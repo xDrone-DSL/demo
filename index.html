@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="blockly/blockly_compressed.js"></script>
+  <script src="blockly/blocks_compressed.js"></script>
+  <script src="blockly/javascript_compressed.js"></script>
+  <script src="blockly/msg/js/en.js"></script>
+  <title>Demo Blockly</title>
+</head>
+<body>
+  <xml id="toolbox" style="display: none">
+    <block type="fly"></block>
+    <block type="move"></block>
+    <block type="rotate"></block>
+  </xml>
+
+  <div id="blocklyDiv" style="float: left; height: 800px; width: 1200px;"></div>
+  
+  <textarea id="textarea" style="float: left; height: 800px; width: 300px;"></textarea>
+
+  <script>
+    var workspace = Blockly.inject('blocklyDiv',
+        {toolbox: document.getElementById('toolbox')});
+    function myUpdateFunction(event) {
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      console.log("code:", code)
+      document.getElementById('textarea').value = code;
+    }
+    workspace.addChangeListener(myUpdateFunction);
+
+  </script>
+</body>
+</html>
